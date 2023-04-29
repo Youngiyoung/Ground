@@ -1,320 +1,72 @@
-# Group Project Team 12482_1
+# Group Project 2 Team 12482_1
 
-The concert management company needs to effectively track all aspects of their operations. The company owns several venues with different names, capacities, locations, and different main points of contact for rental inquiries. The venues grant spaces for multiple vendors of different names, types, and permits to sell items in their respective stalls that range in flat rental charges and sizes. The company also has a designated team of staff members that the company wants to store information about; the company wants to store information about their names, emails, phone numbers, addresses, and pay rates. The concert management team would also like to analyze the shifts of each staff member and retain data about the start and end time of the shifts. 
+# Dataset
 
-Next, the concert management team would also like to save information about agents who manage the performers. An agent can have many performers under them. The company wants to save the names and phone numbers of the agents and the name of the performers they manage. Design a data model to accurately depict the process of concert management. With each performer, they will fall in a specific genre category. With each concert that will be performed, the company wants to track the name, concert date, time of the concert, and opener for the concert.
-
-Finally, the company wants to track attendee name, contact, and credit card numbers. The attendees can purchase one or many tickets from different platforms, with different costs, and pick their seat numbers. The concert will feature multiple performers and can take place at multiple venues. Create a data model that represents the entire process of planning the concert, from purchasing tickets and managing logistics to booking performers and managing staff. 
+The Netflix - TV Shows and Movies dataset is a comprehensive collection of information on over 6,000 titles available on Netflix in the United States, as of March 2023. The dataset was created using data collected from JustWatch, and is provided in the form of a single CSV file titled titles.csv. The file includes a total of 15 columns of data, which cover a range of important information about each title. These columns include title ID, title name, show type (TV show or movie), description, release year, age certification, runtime (length of episode or movie), genres, production countries, number of seasons (if applicable), IMDB ID, IMDB score, IMDB votes, TMDB popularity, and TMDB score.
+ 
+The titles.csv file provides a detailed overview of the content available on Netflix in the US, with information on each title's genre, release year, and IMDB score. It is a valuable resource for anyone interested in conducting detailed analyses of Netflix's content offerings. Researchers and data analysts can use the dataset to identify popular genres, explore trends over time, or analyze the performance of specific titles. For example, the data could be used to examine how viewership of certain genres has changed over the years or to investigate the factors that contribute to high IMDB scores.
+ 
+The Netflix - TV Shows and Movies dataset is particularly valuable for anyone interested in the entertainment industry or conducting research on media consumption patterns. It provides a rich source of data that can be used to gain insights into the preferences and behaviors of Netflix subscribers. Overall, the dataset is a valuable resource for anyone looking to conduct detailed analyses of the content available on Netflix and to gain insights into the factors that contribute to its popularity.
 
 # Team Members
-- [@Grace Fazzone](https://github.com/gracefazzone/MIST-4610-Group-Project)
-- [@Annie Li](https://github.com/anniewli/annieli)
+- [@Grace Fazzone](https://github.com/gracefazzone/graceluvs4610)
+- [@Annie Li](https://github.com/anniewli/project2)
 - [@Young Kim](https://github.com/Youngiyoung/Group-Project)
-- [@William McBride](https://github.com/WilliamMcB23/William-McBride-Project-1---MIST-4610)
- - [@Gustav Bringle](https://github.com/gustavbringle/Sky)
-
-# Data Model
-
-![Logo](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/dm1.png?raw=true)
-
-
-## Data Dictionary
-
-```sql
-
-```
-Table: Agent
-| Column Name | Description               | Data Type | Size | Format | Key |
-| ----------- | ------------------------- | :-------- | ---- | ---- | -----
-| agentID     | Unique Agent Identifier   | INT       |      |      | PK
-| fName       | The agent's first name    | Text      | 45   |      |  |
-| lName       | The agent's last name     | Text      | 45   |      |  |
-| phone       | The agent's phone number  | Text      | 20   | 999-999-9999 | | 
-
-Table: Attendee
-| Column Name | Description                  | Data Type | Size | Format | Key |
-| ----------- | -------------------------    | :-------- | ---- | ---- | -----
-| attendeeID  | Unique Attendee Identifier   | INT       |      |      | PK
-| firstName   | The attendee's first name    | Text      | 45   |      |  |
-| lastName    | The attendee's last name     | Text      | 45   |      |  |
-| email       | The attendee's email         | Text      | 45   |      | | 
-| phone       | The attendee's phone number  | Text      | 20   | 999-999-9999 | |
-| creditCardNumber | The attendee's credit card information | Text | 16   | | |
-
-Table: Company
-| Column Name | Description               | Data Type | Size | Format | Key |
-| ----------- | ------------------------- | :-------- | ---- | ---- | -----
-| plannerID   | Unique Planner Identifier | INT       |      |      | PK
-| companyName | The name of the company the planner is with | Text | 45 |      |  |
-
-Table: Concert
-| Column Name | Description                 | Data Type | Size | Format | Key |
-| ----------- | -------------------------   | :-------- | ---- | ---- | -----
-| concertID   | Unique Concert Identifier   | INT       |      |      | PK
-| concertDate | The date of the concert     | Date      |  10  | YYYY-MM-DD |  |
-| concertTime | The concert start time      | Time      |      | HH-MM-SS |  |
-| opener      | The opening performer       | Text      |  45  |      | | 
-| performerID | Unique Performer Identifier | INT       |      |      | FK |
-| venueID     | Unique Venue Identifier     | INT       |      |      | FK |
-
-Table: Genre
-| Column Name | Description               | Data Type | Size | Format | Key |
-| ----------- | ------------------------- | :-------- | ---- | ---- | -----
-| genreID   | Unique Genre Identifier     | INT       |      |      | PK
-| genreName | The music genre name        | Text | 45 |      |      |
-
-Table: Performer
-| Column Name | Description                 | Data Type | Size | Format | Key |
-| ----------- | -------------------------   | :-------- | ---- | ---- | -----
-| performerID | Unique Performer Identifier | INT       |      |      | PK
-| performerName | The name of the performer | Text      | 45   |      |  |
-| agentID     | Unique Agent Identifier     | INT       |      |      | FK |
-| genreID     | Unique Genre Identifier     | INT       |      |      | FK | 
-
-Table: Shift
-| Column Name | Description             | Data Type | Size | Format | Key |
-| ----------- | ----------------------- | :-------- | ---- | ---- | -----
-| shiftID     | Unique Shift Identifier | INT       |      |      | PK
-| shiftBegin  | The shift start time    | Time      |  8   | HH:MM:SS |  |
-| shiftEnd    | The shift end time      | Time      |  8   | HH:MM:SS |  |
-| staffID     | Unique Staff Identifier | INT       |      |      | FK | 
-| venueID     | Unique Venue Identifier | INT       |      |      | FK |
-
-Table: Staff
-| Column Name   | Description               | Data Type | Size | Format | Key |
-| -----------   | ------------------------- | :-------- | ---- | ---- | -----
-| staffID     | Unique Staff Identifier  | INT      |      | | PK
-| firstName   | The staff's first name   | Text     | 45   | |  |
-| lastName    | The staff's last name    | Text     | 45   | | |
-| email       | The staff's email        | Text     | 45   | | | 
-| phone       | The staff's phone number | Text     | 20   | | |
-| streetAddress | The staff's street address | Text | 45   | | |
-| city        | The staff's city of residence | Text  | 45 |      |  |
-| state       | The staff's state of residence | Text | 45 |      |  |
-| zipCode     | The staff's residence zip code | Text | 45 |      |  |
-| payRate     | The staff's pay rate per hour  | Double | 5 | | XX.XX |
-| plannerID   | Unique Planner Identifier  | INT |        |   | FK |
-
-Table: Stall
-| Column Name      | Description             | Data Type | Size | Format | Key |
-| -----------      | ----------------------- | :-------- | ---- | ---- | -----
-| stallID          | Unique Stall Identifier | INT       |      |      | PK
-| flatRentalCharge | The stall's flat rental charge | Double |  | XXXXX.XX    |  |
-| squareMeters     | The stall's size in square meters | Double |  | XX.XX  |  |
-| venueID          | Unique Venue Identifier | INT       |      |      | FK | 
-| vendorID         | Unique Vendor Identifier | INT      |      |      | FK |
-
-Table: Ticket
-| Column Name    | Description             | Data Type | Size | Format | Key |
-| -----------    | ----------------------- | :-------- | ---- | ---- | -----
-| ticketID       | Unique Ticket Identifier | INT      |      |      | PK
-| ticketPlatform | The platform that sells tickets | Text | 45 |     |  |
-| ticketCost     | The cost of the ticket     | Double |      | XXX.XX |  |
-| seatNumber     | The seat number on ticket  | Text   |  5   |      |  | 
-| attendeeID     | Unique Attendee Identifier | INT    |      |      | FK |
-| concertID      | Unique Concert Identifier  | INT    |      |      | FK |
-
-Table: Vendor
-| Column Name  | Description                | Data Type | Size | Format | Key |
-| -----------  | -------------------------  | :-------- | ---- | ---- | -----
-| vendorID     | Unique Vendor Identifier   | INT       |      |      | PK
-| vendorName   | The vendor's name          | Text      | 45   |      | |
-| vendorPermit | The permit vendor requires | Text      | 45   |      | |
-| vendorType   | The vendor's type of service or goods  | Text | 45   | | |
-
-Table: Venue
-| Column Name | Description              | Data Type | Size | Format | Key |
-| ----------- | ------------------------ | :-------- | ---- | ----   | -----
-| venueID     | Unique Venue Identifier  | INT       |      |        | PK
-| venueName   | The venue's name         | Text      |  45  |        | |
-| location    | The venue's location     | Text      |  45  |        | |
-| capacity    | The venue's maximum capacity | INT   |      |        | | 
-| mainContact | The main contact's name that helps book the venue | Text | 45 |     | |
-| plannerID   | Unique Planner Identifier | INT      |      |        | FK |
-
-
-# SQL Queries
-
-```sql
-Query 1
-Description: Write a query to list out each venue and the most expensive ticket offered that was sold on Ticketmaster.
-
-SELECT venueName, CONCAT(" $ ",ROUND(MAX(ticketCost),2)) AS 'Most Expensive Venue Ticket'
-FROM Venue 
-JOIN Concert ON Venue.venueID = Concert.venueID
-JOIN Ticket ON Concert.concertID = Ticket.concertID
-WHERE ticketPlatform = "Ticketmaster"
-GROUP BY venueName
-ORDER BY MAX(ticketCost) DESC;
-
-Justification: The company managing the different venues would want to know the most expensive ticket price for each venue to help their ticket pricing strategy
-since they can assess demand for further revenue optimization analysis  
-
-Query 2
-Description: Write a query to list out the concert genres and the amount of business each has generated that is over $500.
-
-SELECT genreName, CONCAT(" $ ",ROUND(SUM(ticketCost),2)) AS 'Business Generated'
-FROM Genre
-JOIN Performer ON Genre.genreID = Performer.genreID 
-JOIN Concert ON Performer.PerformerID = Concert.PerformerID
-JOIN Ticket ON Concert.concertID = Ticket.concertID
-GROUP BY genreName
-HAVING SUM(ticketCost) > 500
-ORDER BY SUM(ticketCost) DESC;
-
-Justification: Management would want to know data about the amount of business generated by each genre to assess which to 
-focus on as revenue aligns with consumer demands. The 500 filter gives better data of top genres without outliers for the purpose of simple data analysis. 
-
-Query 3
-Description: Write a query to list the first and last name of the attendees that purchased more than one ticket, the total cost of all of their tickets, and order by highest to lowest total cost.
-
-SELECT firstName, lastName, COUNT(ticketID) AS "Number of Tickets", SUM(ticketCost) AS "Total Cost"
-FROM Attendee
-JOIN Ticket ON Attendee.attendeeID = Ticket.attendeeID
-GROUP BY firstName, lastName
-HAVING COUNT(ticketID) > 1
-ORDER BY SUM(ticketCost) DESC;
-
-Justification: This query identifies customers who have bought more than one ticket for concerts, which is good for management to know for customer segmentation. 
-These customers may frequently go to many concerts or buy multiple tickets at a time and require a different approach to marketing and communication. 
-This query also lets us know the total money they have spent on all of their tickets, which provides a clear understanding of how much revenue they are generating from each customer. 
-This provides an opportunity to identify high-value customers and maybe reward these customers or provide incentives for them to keep buying tickets.
-
-Query 4
-Description: Write a query to list out first and last name of attendee and ticket cost if the ticket cost is greater than the average ticket cost for that attendee.
-
-SELECT firstName, lastName, ticketCost
-FROM Attendee
-JOIN Ticket ON Attendee.attendeeID = Ticket.attendeeID
-WHERE ticketCost > (SELECT AVG(ticketCost) FROM Ticket WHERE Attendee.attendeeID = Ticket.attendeeID);
-
-Justification: This query identifies customers that are paying more for tickets than their average ticket cost. 
-This can also help management identify those customers that are willing to pay more for tickets, see what concerts they are willing to pay more for, and personalize experiences and incentives for these customers. 
-This would hopefully drive higher engagement for these ticket platforms and increase sales. 
-Along with that, knowing what concerts people are willing to pay more for can help them evaluate their pricing strategy and see if there are opportunities to adjust pricing to maximize revenue.
-
-Query 5
-Description: Write a query to display the average ticket price for each venue and order by highest to lowest average ticket cost.
+- [@William McBride](https://github.com/WilliamMcB23/MIST4610-Project-2)
+ - [@Gustav Bringle](https://github.com/gustavbringle/project2tableua)
 
-SELECT venueName, ROUND(AVG(ticketCost), 2) AS 'Average Ticket Price'
-FROM Venue 
-JOIN Concert ON Venue.venueID = Concert.venueID
-JOIN Ticket ON Concert.concertID = Ticket.concertID
-GROUP BY venueName
-ORDER BY AVG(ticketCost) DESC;
+# Questions
 
-Justification: This query selects the name of each venue along with the average ticket price for all concerts held at that venue. To accomplish this, it joins three tables - Venue, Concert, and Ticket - based on their respective ID fields.
-By using the AVG function, it calculates the average ticket price for each venue and orders the results in descending order based on that average. 
-This query can be useful for concert promoters, venue managers, and other stakeholders to get an overview of the average ticket prices for different venues, helping them make informed decisions about where to hold future concerts or events.
+**1) What are the movie names of the highest IMDB scores across the genres (action, animation, comedy, crime, drama, horror, thriller) and what is the IMDB score variation across each genre?**
 
-Query 6
-Description: Write a query to display the names of all the bands that have performed at a venue with a capacity greater than 20,000 people.
+An IMDB score is a rating system that is based on user ratings and reviews of a particular film. It provides a useful metric for analysts to evaluate the success of a movie and its general popularity. The score can be influenced by factors such as marketing, movie hype, and the demographic of the users who rate the movie, which are all incredibly useful when analyzing why one movie may have done better than another. That being said, this metric can alter marketing strategy and adjust the release of various movies in order to tailor to movie consumer preferences. 
 
-SELECT DISTINCT Performer.performerName
-FROM Performer
-JOIN Concert ON Performer.performerID = Concert.performerID
-JOIN Venue ON Concert.venueID = Venue.venueID
-WHERE Venue.capacity > 20000;
+By splitting each movie by genre and comparing the highest IMDB scores from each, we are able to evaluate a great example of what consumers really like to see in that genre. Furthermore, we can see what the standards and expectations of movies in that genre are and dive deeper into what the other factors each movie had that made it stick out to consumers, whether that be the marketing, demographic, etc. 
 
-Justification: The given query selects the distinct names of performers who have performed at venues with a capacity greater than 20000 people by joining the Performer, Concert, and Venue tables based on their respective IDs. This query can be useful for event organizers and talent agencies who are looking for performers that have a history of performing at larger venues. By filtering data based on venue capacity, organizers and agencies can identify performers who are more likely to be suitable for their upcoming events or future bookings.
+Looking at the IMDB score variation across each genre gives us even more insight into this. We can analyze consumer trends and what genres are generally more successful by looking at the median, upper quartile, and lower quartile scores. Netflix is a great source for this data since it is one of the largest streaming platforms in the world with a vast library of content.
 
-Query 7
-Description: Write a query that states which tickets have a value greater than $50 that were purchased for the Red Rocks Theatre venue, and order by ascending ticket cost.
 
-SELECT ticketID, venueName, ticketCost
-FROM Venue
-JOIN Concert ON Concert.venueID = Venue.venueID
-JOIN Ticket ON Concert.concertID = Ticket.concertID
-WHERE venueName = 'Red Rocks Amphitheater' AND ticketCost > 50
-ORDER BY ticketCost;
+**2) Which production country has the highest IMDB movie rating and what genres have proven to be hits in these countries over time?**
 
-JUSTIFICATION: This query lists which tickets were purchased at Red Rocks Amphitheatre which had a price of over $50. To accomplish this, it joins three tables - Venue, Concert, and Ticket - based on their respective ID fields. By using the having function, it helped show the respective tickets which had a price greater than $50. This query can be useful for ticket companies, Red Rocks management team, and customers to see how much people are paying for tickets at this specific venue. 
+Asking this question helps identify the top performing film production countries and provide insight on personal preferences of people in different regions. Understanding the varying preferences gives invaluable data to optimize planning production strategies. For example, this information can be extremely valuable to interested parties such as filmmakers that want to gain a better understanding of what types of films are likely to be most popular with local audiences.
 
-Query 8
-Description: Write a query that lists the name of the agents and the date of the concerts associated with the performer who performs Country music between the dates January 1st 2022 to January 1st 2023.
+In addition, analyzing the top genres derived from top IMDB scores helps each country benchmark themselves relative to the global movie market. The different patterns of popular films could be due to a number of things, such as social or cultural differences between countries. Overall, understanding the  genres with high IMDB scores in different countries helps analysts further identify and assess the factors for film success in these countries. Netflix is a great data set to use for this question since Netflix is a global company that operates in over 190 countries worldwide and provides a plethora of genres that include various languages and cultures. 
 
-SELECT CONCAT(fName,'  ', lName) AS 'Agent Name', concertDate
-FROM Agent
-JOIN Performer ON Agent.agentID = Performer.agentID
-JOIN Genre ON Performer.genreID = Genre.genreID
-JOIN Concert ON Performer.performerID = Concert.performerID
-WHERE genreName = 'Country' AND (concertDate BETWEEN '2022-01-01' AND '2023-01-01');
+# Manipulations to Data
 
-Justification: This query lists the first and last names of the agents who are associated with a performer who performs country music between 01/01/22 and 01/01/23. 
-To accomplish this, it joins four tables - Agent, Performer, Genre and Concert - based on their respective ID fields. 
-By using the Between function, it helped show the country concerts associated with the agent between the listed date range. 
-This query can be useful for concert performers, venue managers, and other people invested to get an overview of the agents who are working with country artists within the span of a year.
+There were a few manipulations we had to impose on the data set before we began our data visualization. When we downloaded the data, we noticed that each movie title had many genres and they were all formatted awkwardly. The format had each genre bracketed, with apostrophes surrounding each, and all the genres were in one column together. This made it a bit difficult to grab any real information surrounding the separate genres in our visualizations and we found the extra stuff surrounding the data to look messy. To fix this, we opened the data in Excel and replaced all of the brackets and apostrophes with nothing so it would remove them and make the data look cleaner overall. We then separated each genre by the comma so they were all in separate columns; this allowed us to be able to pivot all of the columns into one genre column and still be able to showcase that each movie can have multiple genres.
 
-Query 9
-Description: Write a query to list out the names and the pay rate of the staff if the pay rate is greater than the average pay rate of all staff from Las Vegas. 
+Once this was complete,  we ran into an issue in our first visualization where instead of showing us the titles of the movies with the highest IMDB scores, it was returning back every movie title and their IMDB scores. To fix this, we created a calculated field called “MaxTitle” that grabbed only the movie title of each genre that held the top scoring IMDB. We used the LOOKUP and MAX functions to lookup and target the titles with the maximum scores and return that single expression for each of our selected genres.
 
-SELECT firstName, lastName, CONCAT(“$”, payRate) AS “Pay Rate”
-FROM Staff
-WHERE city = "Las Vegas" AND payRate > (SELECT AVG(payRate) FROM Staff);
+Finally, for the second question we wanted to look at production countries for each film. In a similar fashion to the problem we ran into with the genre column, the production countries were formatted in a way that aggregated them all into a single column even if there were multiple countries. They also had the brackets and apostrophes surrounding them, so we went through the same process I mentioned earlier in Excel to remove them and separate the countries. We then decided it would be best to just keep the first column of data for ease of use and because we found it an insignificant factor to include multiple production countries for what we wanted to display. 
 
-Justification: This query retrieves the first and last names of staff members who work in Las Vegas and have a pay rate higher than the average pay rate of all staff members. 
-Additionally, it concatenates the pay rate with a dollar sign for presentation purposes. This query is useful for identifying high-performing staff members in a specific location and determining if they are being compensated appropriately. 
-By comparing their pay rate to the average, it helps identify if they are being paid above or below market rate.
+# Data Visualizations
 
-Query 10
-Description: Write a query to display which ticket platform offered tickets under $30 for concerts in 2022 and list out the ticket prices to those concerts and the venue names.
+## Question 1:
+![Logo](https://github.com/gracefazzone/graceluvs4610/blob/main/Screenshot%20(177).png?raw=true)
 
-SELECT Ticket.ticketPlatform, CONCAT(“$”,Ticket.ticketCost) AS “Ticket Cost”, concertDate, venueName
-FROM Ticket
-JOIN Concert ON Concert.concertID = Ticket.concertID
-JOIN Venue ON Venue.venueID = Concert.venueID
-WHERE ticketCost < 30
-AND concertDate REGEXP "^2022";
+![Logo](https://github.com/gracefazzone/graceluvs4610/blob/main/Screenshot%20(178).png?raw=true)
 
-Justification: This query selects data from three tables, Ticket, Concert, and Venue, by joining them based on their IDs. 
-The query filters the data by only selecting tickets with a cost of less than 30 and concerts that have a date in the year 2022. 
-The selected columns from the tables include the ticket platform, ticket cost, concert date, and venue name. 
-This query will provide a list of all concerts in 2022 that have tickets costing less than $30, along with their venue information.
+**Analysis:**
 
-```
+From the question proposed, the output of results included the highest IMDB score across the different genres as well as the variation of IMDB score within the different genres. The first part of the question is answered in a bar graph, which is separated by the six genres. The results within the bar graph showed the highest rating scores within the genres were action, crime, and genre - which all had a score of 9. The lowest scoring genre was horror with a score of 8. This information gives us a great idea of audience preference surrounding genres. Knowing the titles of movies in the genres that have the highest ratings can allow you to analyze those films to tell us what other factors, such as plot, cast, production, and marketing strategies, are proven to appeal to watchers.
 
-## Query Results
+The second part of the question is answered with a box-and-whisker plot. The data is displayed using this graphic to show the variation of IMDB scores within genres. The box and whisker plot shows key numbers within the summary of a data set: the upper whisker(maximum score), the upper quartile, the median, the lower quartile, and the lower whisker(minimum score). This gives us the complete range and interquartile range of IMDB scores for each genre, which allows us to get a general idea of how these genres typically score. Comparing the medians of different box and whisker plots can give you an idea of the central tendency of each dataset. Looking at our data, animation movies have the highest median at a score of 6.5, which shows us it has a higher average value than the other genres. In addition, values above the upper quartile range give us a great idea of what consumers and movie watchers would like to see when selecting a movie to watch. However, it is important to note that there is a wide range of quality within each genre, which suggests that the success of a movie is not solely dependent on its genre, but rather on a variety of factors such as plot, acting, marketing, and production quality.
 
-Query 1:
 
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q1().png?raw=true)
+## Question 2:
+![Logo](https://github.com/gracefazzone/graceluvs4610/blob/main/Screenshot%20(175).png?raw=true)
 
-Query2:
+![Logo](https://github.com/gracefazzone/graceluvs4610/blob/main/Screenshot%20(176).png?raw=true)
 
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q2().png?raw=true)
+**Analysis:** 
 
-Query3:
+The question at hand explores the range of highest scoring IMDB ratings across different production countries and identifies the genres that have emerged as hits in these countries. The analysis begins with a visual representation in the form of a map, where each country is color-coded according to its maximum IMDB score. The map effectively conveys the variations in IMDB ratings across the selected production countries, namely Argentina, the United States, Canada, and India. Notably, the United States stands out with a dark blue shade, indicating the highest IMDB rating, while other countries like Argentina, Canada, and India exhibit varying shades of blue, representing their respective ratings.
+ 
+Moving on to the second model, a bar graph is presented to showcase the average IMDB scores by genre for the countries of Argentina, the United States, Canada, and India. This visualization allows us to discern the genres that have garnered success and popularity in these highest scoring countries. By comparing the bar heights, we can identify which genres have generally resonated most with audiences in each country. Furthermore, analyzing the relative positions of the bars across the countries provides insights into genre preferences within specific regions.
+ 
+Understanding the average range of IMDB ratings among different production countries can shed light on the factors contributing to a movie's success in specific regions. Identifying the genres that have proven to be hits in these countries can help filmmakers and industry professionals tailor their production strategies to align with the preferences of audiences in different cultural contexts. However, it is important to note that while genre popularity and high IMDB ratings can be indicative of success, various other factors such as cultural nuances, storytelling techniques, and local marketing efforts may also contribute significantly to a film's performance.
 
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q3().png?raw=true)
+# Tableau Workbook
 
-Query 4:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q4().png?raw=true)
-
-Query 5:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q5().png?raw=true)
-
-Query 6:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q6().png?raw=true)
-
-Query 7:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q7().png?raw=true)
-
-Query 8:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q8().png?raw=true)
-
-Query 9:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q9().png?raw=true)
-
-Query 10:
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/TP_Q10().png?raw=true)
-
-## SQL Query Matrix
-
-![App Screenshot](https://github.com/gracefazzone/MIST-4610-Group-Project/blob/main/Screenshot%20(144).png?raw=true)
+https://github.com/gracefazzone/graceluvs4610/blob/main/4610%20Project%202.twbx
